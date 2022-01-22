@@ -1,6 +1,6 @@
 <?php
 
-$max = 3; // 1ページに表示するテキストの最大数
+$max = 5; // 1ページに表示するテキストの最大数
 $max_link_num = 5; // 1ページに貼る数字リンクの最大数
 
 $file_names = glob('files/*.txt'); // ファイル名一覧
@@ -9,7 +9,7 @@ $texts = get_texts($file_names);
 $page_num = ceil(count($file_names) / $max); // 全部の記事を何ページに分けて表示するか
 //$page_num_per_page =
 $current_page = isset($_GET["page"]) ? $_GET["page"] : null;
-$start = get_start_text_num($current_page); // 何番目の記事から表示するか。if($max == 3) 1 == 0, 2 == 3, 3 == 6, 4 == 9, 5 == 12 ...
+$start = get_start_text_num($current_page, $max); // 何番目の記事から表示するか。if($max == 3) 1 == 0, 2 == 3, 3 == 6, 4 == 9, 5 == 12 ...
 $current_link_page = ceil($current_page / $max_link_num); // 今何番目のリンクページにいるか。if($max_link_num === 5) [1 2 3 4 5] => 1, [6 7 8 9 10] => 2 ...
 $start_page_num = ($current_link_page - 1) * $max_link_num + 1; // [6 7 8 9 10] -> 6
 
@@ -36,13 +36,13 @@ function get_texts($names){
 }
 
 // 何番目の記事から表示するか。if($max == 3) 1 == 0, 2 == 3, 3 == 6, 4 == 9, 5 == 12 ...
-function get_start_text_num($num){
+function get_start_text_num($num, $max){
     if($num === null){
         return 0;
     } elseif($num < 2){
         return 0;
     } else {
-        return ($num - 1) * 3;
+        return ($num - 1) * $max;
     }
 }
 
