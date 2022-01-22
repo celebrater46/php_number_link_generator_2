@@ -1,6 +1,12 @@
 @charset "UTF-8";
 
-p {
+body{
+    color: silver;
+    background-color: black;
+    font-size: 20px;
+}
+
+p.links {
     line-height: 120%;
     margin: 0;
     padding: 0;
@@ -10,4 +16,14 @@ p {
 p.links a{
     margin: 15px;
     display: block;
+}
+
+a{
+    font-size: 1.5rem;
+    color: goldenrod;
+    text-decoration: none;
+}
+
+a:hover{
+    color: gold;
 }

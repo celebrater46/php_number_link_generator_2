@@ -5,7 +5,29 @@ require_once "NumberLink.php";
 $max_text_num = 5; // 1ページに表示するテキストの最大数
 $max_link_num = 5; // 1ページに貼る数字リンクの最大数
 
-$link = new NumberLink($max_text_num, $max_link_num);
+$file_names = glob('files/*.txt'); // ファイル名一覧
+$link = new NumberLink($max_text_num, $max_link_num, count($file_names));
+
+$titles = create_titles($link->text_sum);
+$texts = get_texts($file_names);
+
+
+function create_titles($sum){
+//    $num = glob(("files/*.txt")); // txt の数を数える
+    $array = [];
+    for($i = 0; $i < $sum; $i++){
+        array_push($array, "sample title " . ($i + 1));
+    }
+    return $array;
+}
+
+function get_texts($names){
+    $texts = [];
+    for ($i = 0; $i < count($names); $i++){
+        array_push($texts, file($names[$i]));
+    }
+    return $texts;
+}
 
 ?>
 
@@ -24,11 +46,11 @@ $link = new NumberLink($max_text_num, $max_link_num);
 
     <h1>PHP Number Link Generator</h1>
     <?php for ($i = $link->start; $i < $link->start + $max_text_num; $i++) : ?>
-        <?php if($i < count($link->file_names)) : ?>
+        <?php if($i < $link->text_sum) : ?>
             <hr>
-            <h2><?php echo $link->titles[$i]; ?></h2>
+            <h2><?php echo $titles[$i]; ?></h2>
             <div>
-                <?php foreach ($link->texts[$i] as $line) : ?>
+                <?php foreach ($texts[$i] as $line) : ?>
                     <p><?php echo $line; ?></p>
                 <?php endforeach; ?>
             </div>
