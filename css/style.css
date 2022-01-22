@@ -6,10 +6,13 @@ body{
     font-size: 20px;
 }
 
-p.links {
+p{
     line-height: 120%;
     margin: 0;
     padding: 0;
+}
+
+p.links{
     display: flex;
 }
 
