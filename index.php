@@ -13,7 +13,6 @@ $texts = get_texts($file_names);
 
 
 function create_titles($sum){
-//    $num = glob(("files/*.txt")); // txt の数を数える
     $array = [];
     for($i = 0; $i < $sum; $i++){
         array_push($array, "sample title " . ($i + 1));

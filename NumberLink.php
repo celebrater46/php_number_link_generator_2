@@ -2,12 +2,8 @@
 
 class NumberLink
 {
-//    public $file_names; // ファイル名一覧
     public $text_sum; // テキストファイルの総数
-//    public $titles;
-//    public $texts;
     public $page_num; // 全部の記事を何ページに分けて表示するか
-//    public $page_num_per_page =
     public $current_page;
     public $start; // 何番目の記事から表示するか。if($max == 3) 1 == 0, 2 == 3, 3 == 6, 4 == 9, 5 == 12 ...
     public $current_link_page; // 今何番目のリンクページにいるか。if($max_link_num === 5) [1 2 3 4 5] => 1, [6 7 8 9 10] => 2 ...
@@ -22,8 +18,6 @@ class NumberLink
     // $links == リンクナンバーを1ページにいくつ表示するか
     // $num == テキストファイルの総数
     function __construct($texts, $links, $sum){
-//        $this->file_names = glob('files/*.txt'); // ファイル名一覧
-//        $this->titles = $this->create_titles($this->file_names);
         $this->text_sum = $sum;
         $this->page_num = ceil($sum / $texts); // 全部の記事を何ページに分けて表示するか
         $this->current_page = isset($_GET["page"]) ? $_GET["page"] : null;
