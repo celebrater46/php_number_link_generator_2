@@ -12,6 +12,7 @@ class NumberLink
     public $page_num; // 全部の記事を何ページに分けて表示するか
     public $current_page;
     public $start; // 何番目の記事から表示するか。if($max == 3) 1 == 0, 2 == 3, 3 == 6, 4 == 9, 5 == 12 ...
+    public $end; // 何番目の記事で終わるか。if($max == 3) 1 == 2, 2 == 5, 3 == 8, 4 == 11, 5 == 14 ...
     public $current_link_page; // 今何番目のリンクページにいるか。if($max_link_num === 5) [1 2 3 4 5] => 1, [6 7 8 9 10] => 2 ...
     public $start_page_num; // [6 7 8 9 10] -> 6
 
@@ -28,6 +29,7 @@ class NumberLink
         $this->page_num = ceil($sum / PNLG_MAX_TEXT_NUM); // 全部の記事を何ページに分けて表示するか
         $this->current_page = isset($_GET["page"]) ? $_GET["page"] : 1;
         $this->start = $this->get_start_text_num($this->current_page, PNLG_MAX_TEXT_NUM); // 何番目の記事から表示するか。if($max == 3) 1 == 0, 2 == 3, 3 == 6, 4 == 9, 5 == 12 ...
+        $this->end = $this->start + PNLG_MAX_TEXT_NUM;
         $this->current_link_page = ceil($this->current_page / PNLG_MAX_LINK_NUM); // 今何番目のリンクページにいるか。if($max_link_num === 5) [1 2 3 4 5] => 1, [6 7 8 9 10] => 2 ...
         $this->start_page_num = ($this->current_link_page - 1) * PNLG_MAX_LINK_NUM + 1; // [6 7 8 9 10] -> 6
     }
@@ -43,20 +45,22 @@ class NumberLink
         }
     }
 
-    function get_page_links_html(){
+    function get_page_links_html($additional_parameters){
         $html = modules\space_br("<p class='links'>", 1);
         if($this->current_link_page > 1){
-            $html .= modules\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . ($this->current_link_page - 1) . '">＜＜</a>', 2);
+            $html .= modules\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . ($this->current_link_page - 1) . $additional_parameters . '">＜＜</a>', 2);
         }
         for($i = $this->start_page_num; $i <= $this->current_link_page * PNLG_MAX_LINK_NUM; $i++){
             if($i <= $this->page_num){
-                $html .= modules\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . $i . '">' . $i . '</a>', 2);
+                $html .= modules\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . $i . $additional_parameters . '">' . $i . '</a>', 2);
             }
         }
         if($this->page_num > $this->current_link_page * PNLG_MAX_LINK_NUM){
-            $html .= modules\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . ($this->current_link_page * PNLG_MAX_LINK_NUM + 1) . '">＞＞</a>', 2);
+            $html .= modules\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . ($this->current_link_page * PNLG_MAX_LINK_NUM + 1) . $additional_parameters . '">＞＞</a>', 2);
         }
         $html .= modules\space_br("</p>", 1);
+//        var_dump($html);
+//        echo "Hello World";
         return $html;
     }
 }

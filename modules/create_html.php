@@ -61,6 +61,6 @@ function pnlg_get_html(){
     $html .= space_br("<p>start_page_num: " . $link->start_page_num . "</p>", 1);
     $html .= space_br("<h1>" . PNLG_SITE_NAME . "</h1>", 1);
     $html .= get_articles_html($link, $articles);
-    $html .= $link->get_page_links_html();
+    $html .= $link->get_page_links_html("");
     return $html;
 }
