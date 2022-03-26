@@ -2,6 +2,10 @@
 
 namespace php_number_link_generator\classes;
 
+use php_number_link_generator\modules as modules;
+
+require_once( dirname(__FILE__) . '/../modules/html_common_module.php');
+
 class NumberLink
 {
     public $text_sum; // テキストファイルの総数
@@ -37,5 +41,22 @@ class NumberLink
         } else {
             return ($num - 1) * $max;
         }
+    }
+
+    function get_page_links_html(){
+        $html = modules\space_br("<p class='links'>", 1);
+        if($this->current_link_page > 1){
+            $html .= modules\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . ($this->current_link_page - 1) . '">＜＜</a>', 2);
+        }
+        for($i = $this->start_page_num; $i <= $this->current_link_page * PNLG_MAX_LINK_NUM; $i++){
+            if($i <= $this->page_num){
+                $html .= modules\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . $i . '">' . $i . '</a>', 2);
+            }
+        }
+        if($this->page_num > $this->current_link_page * PNLG_MAX_LINK_NUM){
+            $html .= modules\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . ($this->current_link_page * PNLG_MAX_LINK_NUM + 1) . '">＞＞</a>', 2);
+        }
+        $html .= modules\space_br("</p>", 1);
+        return $html;
     }
 }
