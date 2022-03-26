@@ -1,32 +1,16 @@
 <?php
 
-require_once "NumberLink.php";
+namespace php_number_link_generator;
 
-$max_text_num = 5; // 1ページに表示するテキストの最大数
-$max_link_num = 5; // 1ページに貼る数字リンクの最大数
+use php_number_link_generator\modules as modules;
 
-$file_names = glob('files/*.txt'); // ファイル名一覧
-$link = new NumberLink($max_text_num, $max_link_num, count($file_names));
+require_once "modules/main.php";
 
-$titles = create_titles($link->text_sum);
-$texts = get_texts($file_names);
-
-
-function create_titles($sum){
-    $array = [];
-    for($i = 0; $i < $sum; $i++){
-        array_push($array, "sample title " . ($i + 1));
-    }
-    return $array;
-}
-
-function get_texts($names){
-    $texts = [];
-    for ($i = 0; $i < count($names); $i++){
-        array_push($texts, file($names[$i]));
-    }
-    return $texts;
-}
+//$file_names = glob('files/*.txt'); // ファイル名一覧
+//$link = modules\get_link($file_names);
+////$titles = modules\create_titles($link->text_sum);
+////$texts = modules\get_texts($file_names);
+//$articles = modules\get_articles($link);
 
 ?>
 
@@ -44,7 +28,7 @@ function get_texts($names){
     <p><?php echo "start_page_num: " . $link->start_page_num ; ?></p>
 
     <h1>PHP Number Link Generator</h1>
-    <?php for ($i = $link->start; $i < $link->start + $max_text_num; $i++) : ?>
+    <?php for ($i = $link->start; $i < $link->start + PNLG_MAX_TEXT_NUM; $i++) : ?>
         <?php if($i < $link->text_sum) : ?>
             <hr>
             <h2><?php echo $titles[$i]; ?></h2>

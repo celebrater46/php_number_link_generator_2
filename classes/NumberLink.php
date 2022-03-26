@@ -1,5 +1,7 @@
 <?php
 
+namespace php_number_link_generator\classes;
+
 class NumberLink
 {
     public $text_sum; // テキストファイルの総数
