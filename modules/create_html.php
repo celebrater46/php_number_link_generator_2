@@ -18,6 +18,7 @@ function get_p_lines_html($lines){
     return $html;
 }
 
+// 記事
 function get_articles_html($link, $articles){
     $html = "";
     for($i = $link->start; $i < $link->start + PNLG_MAX_TEXT_NUM; $i++){
@@ -33,7 +34,7 @@ function get_articles_html($link, $articles){
 }
 
 function get_link($file_names){
-    return new NumberLink(PNLG_MAX_TEXT_NUM, PNLG_MAX_LINK_NUM, count($file_names));
+    return new NumberLink(count($file_names));
 }
 
 function get_articles($file_names){
