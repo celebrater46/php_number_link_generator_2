@@ -59,8 +59,6 @@ class NumberLink
             $html .= modules\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . ($this->current_link_page * PNLG_MAX_LINK_NUM + 1) . $additional_parameters . '">＞＞</a>', 2);
         }
         $html .= modules\space_br("</p>", 1);
-//        var_dump($html);
-//        echo "Hello World";
         return $html;
     }
 }
