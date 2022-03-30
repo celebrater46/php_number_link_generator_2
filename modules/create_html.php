@@ -5,9 +5,9 @@ namespace php_number_link_generator\modules;
 use php_number_link_generator\classes\Article;
 use php_number_link_generator\classes\NumberLink;
 
-require_once( dirname(__FILE__) . '/../classes/NumberLink.php');
-require_once( dirname(__FILE__) . '/../classes/Article.php');
-require_once( dirname(__FILE__) . '/../init.php');
+require_once(dirname(__FILE__) . '/../classes/NumberLink.php');
+require_once(dirname(__FILE__) . '/../classes/Article.php');
+require_once(dirname(__FILE__) . '/../init.php');
 require_once "html_common_module.php";
 
 function get_p_lines_html($lines){

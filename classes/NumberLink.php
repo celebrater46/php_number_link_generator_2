@@ -4,7 +4,7 @@ namespace php_number_link_generator\classes;
 
 use php_number_link_generator\modules as modules;
 
-require_once( dirname(__FILE__) . '/../modules/html_common_module.php');
+require_once(dirname(__FILE__) . '/../modules/html_common_module.php');
 
 class NumberLink
 {
