@@ -12,11 +12,11 @@ p{
     padding: 0;
 }
 
-p.links{
+p.pnlg_links{
     display: flex;
 }
 
-p.links a{
+p.pnlg_links a{
     margin: 15px;
     display: block;
 }

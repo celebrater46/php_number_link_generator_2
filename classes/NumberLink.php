@@ -49,7 +49,7 @@ class NumberLink
     }
 
     function get_page_links_html($additional_parameters){
-        $html = cm\space_br("<p class='links'>", 1);
+        $html = cm\space_br("<p class='pnlg_links'>", 1);
         if($this->current_link_page > 1){
             $html .= cm\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . ($this->current_link_page - 1) . $additional_parameters . '">＜＜</a>', 2);
         }

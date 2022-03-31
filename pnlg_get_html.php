@@ -2,9 +2,11 @@
 
 namespace php_number_link_generator;
 
-use php_number_link_generator\modules as modules;
+use common_modules as cm;
 
+require_once "init.php";
 require_once "modules/create_html.php";
+require_once PNLG_HCM_PATH;
 
 function pnlg_get_html($max){
     $file_names = glob('files/*.txt'); // ファイル名一覧
