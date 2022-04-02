@@ -2,7 +2,7 @@
 
 namespace php_number_link_generator;
 
-use common_modules as cm;
+use fp_common_modules as cm;
 
 require_once "init.php";
 require_once "modules/create_html.php";

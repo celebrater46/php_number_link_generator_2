@@ -2,7 +2,7 @@
 
 namespace php_number_link_generator\modules;
 
-use common_modules as cm;
+use fp_common_modules as cm;
 use php_number_link_generator\classes\Article;
 use php_number_link_generator\classes\NumberLink;
 
