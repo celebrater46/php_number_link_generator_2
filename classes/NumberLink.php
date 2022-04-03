@@ -26,6 +26,7 @@ class NumberLink
     // $texts == 1ページに何記事表示するか
     // $links == リンクナンバーを1ページにいくつ表示するか
     // $num == テキストファイルの総数
+    // $max == 1ページあたりの最大記事数
     function __construct($sum, $max){
         $this->text_sum = $sum;
         $this->max_texts_per_page = $max;
