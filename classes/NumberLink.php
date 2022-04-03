@@ -49,18 +49,21 @@ class NumberLink
         }
     }
 
-    function get_page_links_html($additional_parameters){
+    function get_page_links_html($additional_parameters, $index){
+        if(!isset($index)){
+            $index = PNLG_INDEX_FILE_NAME;
+        }
         $html = cm\space_br("<p class='pnlg_links'>", 1);
         if($this->current_link_page > 1){
-            $html .= cm\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . ($this->current_link_page - 1) . $additional_parameters . '">＜＜</a>', 2);
+            $html .= cm\space_br('<a href="' . $index . '?page=' . ($this->current_link_page - 1) . $additional_parameters . '">＜＜</a>', 2);
         }
         for($i = $this->start_page_num; $i <= $this->current_link_page * PNLG_MAX_LINK_NUM; $i++){
             if($i <= $this->page_num){
-                $html .= cm\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . $i . $additional_parameters . '">' . $i . '</a>', 2);
+                $html .= cm\space_br('<a href="' . $index . '?page=' . $i . $additional_parameters . '">' . $i . '</a>', 2);
             }
         }
         if($this->page_num > $this->current_link_page * PNLG_MAX_LINK_NUM){
-            $html .= cm\space_br('<a href="' . PNLG_INDEX_FILE_NAME . '?page=' . ($this->current_link_page * PNLG_MAX_LINK_NUM + 1) . $additional_parameters . '">＞＞</a>', 2);
+            $html .= cm\space_br('<a href="' . $index . '?page=' . ($this->current_link_page * PNLG_MAX_LINK_NUM + 1) . $additional_parameters . '">＞＞</a>', 2);
         }
         $html .= cm\space_br("</p>", 1);
         return $html;
