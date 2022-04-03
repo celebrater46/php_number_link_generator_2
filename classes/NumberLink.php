@@ -2,10 +2,10 @@
 
 namespace php_number_link_generator\classes;
 
-use php_number_link_generator\modules as modules;
+//use php_number_link_generator\modules as modules;
 use fp_common_modules as cm;
 
-require_once(dirname(__FILE__) . '/../' . PNLG_HCM_PATH);
+require_once PNLG_HCM_PATH;
 
 class NumberLink
 {
